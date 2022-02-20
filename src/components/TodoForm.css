@@ -1,0 +1,17 @@
+
+.todo{
+    display: flex;
+    justify-content: center;
+    margin-top: 9rem;
+}
+
+.input-todo{
+    width: 50%;
+}
+
+.todo-btn{
+    
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}

@@ -1,23 +1,49 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Tasks from './components/Tasks';
+import TodoForm from './components/TodoForm';
+
+
+
 
 function App() {
+
+  const [task, SetTask] = useState([])
+
+
+  const deleteTask = (index) => {
+    let newTodo = [...task]
+    newTodo.splice(index, 1)
+    SetTask(newTodo)
+
+  }
+
+  const onSave = (text) => {
+
+    const todo = {
+      task: text,
+      isComplete: false
+    };
+
+    SetTask([...task, todo])
+  }
+
+
+  const completeTask = (index) => {
+    const nTask = [...task];
+    nTask[index].isComplete = !nTask[index].isComplete;
+    SetTask(nTask)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Lista de Tarefas</h1>
+      <div className='todo-app'>
+        <TodoForm onSave={onSave} />
+
+        <Tasks tarefas={task} deleteTask={deleteTask} completeTask={completeTask} />
+      </div>
+
     </div>
   );
 }
