@@ -31,7 +31,9 @@ function Tasks({ tarefas, deleteTask, completeTask }) {
                                 color="default"
                                 onClick={() => completeTask(index)}
                             />
-                            <p style={{ textDecoration: tarefa.isComplete ? 'line-through' : 'none' }}>{tarefa.task}</p>
+
+                            <div className='tarefa'><p style={{ textDecoration: tarefa.isComplete ? 'line-through' : 'none' }}>{tarefa.task}</p></div>
+
 
                             <IconButton>
                                 <DeleteOutlinedIcon onClick={() => deleteTask(index)} sx={{ color: red[900] }} />
