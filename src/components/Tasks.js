@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Checkbox } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { red } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
@@ -8,29 +8,18 @@ import './Tasks.css'
 
 
 function Tasks({ tarefas, deleteTask, completeTask }) {
-
-
-
-
-
     return (
-
-
-
-
-
 
         < div className='div-task' >
             {
                 tarefas.map((tarefa, index) => {
                     return (
 
-                        <div key={index} className='tasks' style={{ backgroundColor: tarefa.isComplete ? '#70AE6E' : '' }}  >
+                        <form key={index} className='tasks' style={{ backgroundColor: tarefa.isComplete ? '#70AE6E' : '' }}  >
+                            <IconButton>
+                                <CheckCircleIcon onClick={() => completeTask(index)} />
+                            </IconButton>
 
-                            <Checkbox
-                                color="default"
-                                onClick={() => completeTask(index)}
-                            />
 
                             <div className='tarefa'><p style={{ textDecoration: tarefa.isComplete ? 'line-through' : 'none' }}>{tarefa.task}</p></div>
 
@@ -39,12 +28,11 @@ function Tasks({ tarefas, deleteTask, completeTask }) {
                                 <DeleteOutlinedIcon onClick={() => deleteTask(index)} sx={{ color: red[900] }} />
                             </IconButton>
 
-                        </div>
+
+                        </form>
                     )
                 })
             }
-
-
 
         </div >
     )

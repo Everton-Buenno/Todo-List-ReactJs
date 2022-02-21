@@ -26,14 +26,18 @@ function TodoForm({ onSave }) {
                         fullWidth
                         onChange={getTask}
                         size="normal"
-
+                        value={text}
                     />
                 </div>
                 <div className="todo-btn">
                     <Button
                         endIcon={<AddCircleOutlinedIcon />}
                         size="large"
-                        onClick={() => { onSave(text) }}
+                        onClick={() => {
+
+                            onSave(text);
+                            setText('')
+                        }}
                         variant="contained"
                     >Save</Button>
                 </div>

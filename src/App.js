@@ -16,6 +16,7 @@ function App() {
     newTodo.splice(index, 1)
     SetTask(newTodo)
 
+
   }
 
   const onSave = (text) => {
