@@ -15,6 +15,15 @@ function TodoForm({ onSave }) {
 
     }
 
+
+    const handleKeypress = e => {
+
+        if (e.key === 'Enter') {
+            onSave(text);
+        }
+    };
+
+
     return (
         <form onSubmit={(e) => { e.preventDefault() }}>
             <div className="todo">
@@ -25,9 +34,11 @@ function TodoForm({ onSave }) {
                         label="Insira uma tarefa..."
                         fullWidth
                         onChange={getTask}
+                        onKeyPress={handleKeypress}
                         size="normal"
                         value={text}
                     />
+
                 </div>
                 <div className="todo-btn">
                     <Button

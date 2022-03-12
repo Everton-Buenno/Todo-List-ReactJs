@@ -31,10 +31,14 @@ function App() {
 
     const todo = {
       task: text,
-      isComplete: false
-    };
+      isComplete: false,
 
-    setTask([...task, todo])
+    };
+    if (todo.task.length <= 1) {
+      return
+    } else
+      setTask([...task, todo])
+    console.log(task)
   }
 
 
@@ -45,7 +49,7 @@ function App() {
 
 
 
-  
+
   const completeTask = (index) => {
     const nTask = [...task];
     nTask[index].isComplete = !nTask[index].isComplete;
@@ -63,8 +67,7 @@ function App() {
     <div className="App">
       <h1>Lista de Tarefas</h1>
       <div className='todo-app'>
-        <TodoForm onSave={onSave} />
-
+        <TodoForm onSave={onSave} tarefas={task} />
         <Tasks tarefas={task} deleteTask={deleteTask} completeTask={completeTask} />
       </div>
 
