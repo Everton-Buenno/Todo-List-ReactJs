@@ -38,7 +38,7 @@ function App() {
       return
     } else
       setTask([...task, todo])
-    console.log(task)
+
   }
 
 
