@@ -20,6 +20,7 @@ function TodoForm({ onSave }) {
 
         if (e.key === 'Enter') {
             onSave(text);
+            setText('')
         }
     };
 
