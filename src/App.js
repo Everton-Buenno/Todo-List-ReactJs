@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Tasks from './components/Tasks';
-import TodoForm from './components/TodoForm';
+import Tasks from './components/Task/Tasks';
+import TodoForm from './components/TodoForm/TodoForm';
 
 
 
 
 function App() {
 
-  const [task, SetTask] = useState([])
+
+  const getLocalStorage = () => {
+    let list = localStorage.getItem("listTask");
+
+    if (list) {
+      return JSON.parse(localStorage.getItem("listTask"));
+    } else {
+      return [];
+    }
+  };
 
 
-  const deleteTask = (index) => {
-    let newTodo = [...task]
-    newTodo.splice(index, 1)
-    SetTask(newTodo)
 
 
-  }
+
+  const [task, setTask] = useState(getLocalStorage());
+
+
 
   const onSave = (text) => {
 
@@ -26,16 +34,31 @@ function App() {
       isComplete: false
     };
 
-    SetTask([...task, todo])
+    setTask([...task, todo])
   }
 
 
+
+  useEffect(() => {
+    localStorage.setItem("listTask", JSON.stringify(task));
+  }, [task]);
+
+
+
+  
   const completeTask = (index) => {
     const nTask = [...task];
     nTask[index].isComplete = !nTask[index].isComplete;
-    SetTask(nTask)
+    setTask(nTask)
   }
 
+  const deleteTask = (index) => {
+    let newTodo = [...task]
+    newTodo.splice(index, 1)
+    setTask(newTodo)
+
+
+  }
   return (
     <div className="App">
       <h1>Lista de Tarefas</h1>
